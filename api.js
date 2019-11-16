@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const bodyparser = require("body-parser"); //le cabeçalho e converte dados
 const cors = require("cors"); //permite acesso seguro a recursos de outros dominios/sites
 
@@ -30,7 +30,7 @@ api.get("/home", function(req, res) {
   res.send(retorno);
 });
 
-api.post("/registros", function(req, res) {
+api.post('/registros', (req, res) => {
   registrosTable
     .create({
       data_ocorrido: req.body.data_ocorrido,
@@ -43,7 +43,7 @@ api.post("/registros", function(req, res) {
       observacoes: req.body.observacoes
     })
     .then(function() {
-      //res.redirect('/')//redireciona para a rota indicada caso o registro tenha sido inserido com sucesso
+      //res.redirect('/')//redireciona para a rota indicada casoo o registro tenha sido inserido com sucesso
       res.send("Registro inserido com sucesso!");
     })
     .catch(function(erro) {
@@ -79,14 +79,28 @@ api.get("/registros/:id?", function(req, res) {
     });
 });
 
+api.delete("/registros/:id?", function(req, res) {
+  registrosTable
+    .destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    .then(function(dados) {
+      res.send(dados);
+      //console.log("gabaritos: "+dados)
+    })
+    .catch(function(erro) {
+      res.send("Erro encontrado: " + erro);
+    });
+});
+
 api.post("/usuarios", function(req, res) {
   usuariosTable
     .findAll({
       where: {
         login: req.body.login,
         senha: req.body.senha
-        //login: "admin",
-        //senha: "123"
       }
     })
     .then(function(dados) {
