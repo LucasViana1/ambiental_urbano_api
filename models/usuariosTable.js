@@ -10,6 +10,6 @@ const Usuarios = db.sequelize.define('usuarios', {
 });
 
 //Criar a tabela
-//Usuarios.sync({force: true})
+// Usuarios.sync({force: true})
 
 module.exports = Usuarios

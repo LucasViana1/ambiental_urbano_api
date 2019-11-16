@@ -11,15 +11,13 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2018
     },
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "rules": {
-        "linebreak-style": ["error", "windows"],
-        "indent": ["error", 4],
-        "prefer-template": 0,
-        "no-multi-str": 0,
-        "max-len": ["error", { "code": 150 }]
     }
-   
 }
