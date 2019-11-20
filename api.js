@@ -6,29 +6,19 @@ const api = express();
 const router = express.Router();
 
 api.use(cors()); //trata requisições que não é da mesma origem que a API
-api.use(bodyparser.urlencoded({ extended: true })); //"urlencoded" recupe informações de formularios(por exemplo) e os converte
+api.use(bodyparser.urlencoded({ extended: true })); //"urlencoded" recupera informações de formularios(por exemplo) e os converte
 api.use(bodyparser.json({ limit: "20mb", extended: true })); //limita tamanho dos arquivos enviados (imagem,video,etc)
 
 //tabelas
 const usuariosTable = require("./models/usuariosTable");
 const registrosTable = require("./models/registrosTable");
 
-//talvez remover essa estrutura com 'router'
 router.get("/", (req, res) =>
   res.json({
     retorno: "API em funcionamento..."
   })
 );
 api.use("/", router);
-
-api.get("/home", function(req, res) {
-  const retorno = {
-    nome: "nomeee",
-    idade: "idadeee"
-  };
-
-  res.send(retorno);
-});
 
 api.post('/registros', (req, res) => {
   registrosTable
@@ -43,7 +33,6 @@ api.post('/registros', (req, res) => {
       observacoes: req.body.observacoes
     })
     .then(function() {
-      //res.redirect('/')//redireciona para a rota indicada casoo o registro tenha sido inserido com sucesso
       res.send("Registro inserido com sucesso!");
     })
     .catch(function(erro) {
@@ -56,7 +45,6 @@ api.get("/registros", function(req, res) {
     .findAll({})
     .then(function(dados) {
       res.send(dados);
-      //console.log("gabaritos: "+dados)
     })
     .catch(function(erro) {
       res.send("Erro encontrado: " + erro);
@@ -72,7 +60,6 @@ api.get("/registros/:id?", function(req, res) {
     })
     .then(function(dados) {
       res.send(dados);
-      //console.log("gabaritos: "+dados)
     })
     .catch(function(erro) {
       res.send("Erro encontrado: " + erro);
@@ -88,7 +75,6 @@ api.delete("/registros/:id?", function(req, res) {
     })
     .then(function(dados) {
       res.send(dados);
-      //console.log("gabaritos: "+dados)
     })
     .catch(function(erro) {
       res.send("Erro encontrado: " + erro);
