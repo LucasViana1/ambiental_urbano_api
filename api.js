@@ -108,5 +108,5 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 9999;
 }
-api.listen(porta);
-console.log(`Servidor funcionando na porta: ${porta}`);
+api.listen(port);
+console.log(`Servidor funcionando na porta: ${port}`);
