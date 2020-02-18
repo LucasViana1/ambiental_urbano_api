@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const bodyparser = require("body-parser"); //le cabeçalho e converte dados
 const cors = require("cors"); //permite acesso seguro a recursos de outros dominios/sites
 
@@ -20,7 +20,7 @@ router.get("/", (req, res) =>
 );
 api.use("/", router);
 
-api.post('/registros', (req, res) => {
+api.post("/registros", (req, res) => {
   registrosTable
     .create({
       data_ocorrido: req.body.data_ocorrido,
@@ -104,6 +104,9 @@ api.post("/usuarios", function(req, res) {
     });
 });
 
-const porta = 9999;
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 9999;
+}
 api.listen(porta);
 console.log(`Servidor funcionando na porta: ${porta}`);
