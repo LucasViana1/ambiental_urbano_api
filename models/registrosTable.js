@@ -28,6 +28,6 @@ const Registros = db.sequelize.define("registros", {
 });
 
 //Criar a tabela
-Registros.sync({ force: true });
+// Registros.sync({ force: true });
 
 module.exports = Registros;
